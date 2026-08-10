@@ -10,15 +10,15 @@ para importar no Google Calendar / Outlook / Apple Calendar.
 
 ```
 data/
-  horario_professor.json     # horário semanal do professor (dias/horas por turma)
-  calendario.json             # início/fim do semestre + feriados/eventos
+  horario_professor.json     # professor, período, datas do semestre e horário semanal por turma
+  calendario.json             # feriados/avaliações/eventos do semestre
   disciplinas/
     CCP120.json               # conteúdo programático (1 arquivo por disciplina)
     CC7140.json
     ...
 scripts/
   build.js                    # lê os JSON e gera o site em docs/
-  config.js                   # regras configuráveis (ex: quais tipos de dia cancelam aula)
+  config.js                   # regras configuráveis (ex: mapeamento de dias da semana)
 docs/                          # site gerado (não versionado, criado pelo build/CI)
 .github/workflows/deploy.yml   # publica docs/ no GitHub Pages a cada push na main
 ```
@@ -50,6 +50,13 @@ docs/                          # site gerado (não versionado, criado pelo build
 `dia` aceita: Segunda, Terca/Terça, Quarta, Quinta, Sexta, Sabado/Sábado, Domingo.
 `dataInicio`/`dataFim` marcam os limites do semestre (mudam 2x por ano).
 
+Uma turma pode ter mais de um `{ dia, inicio, fim }` em `horarios` (ex: duas
+aulas por semana). Duas turmas que têm um encontro em comum também podem ser
+declaradas como uma turma só, com o nome combinado (ex: `"turma": "060/665"`
+ou `"turma": "075-375"`) e todos os horários (inclusive os repetidos) na
+mesma lista — o gerador não deduplica, então o encontro conjunto aparece
+normalmente na página dessa turma combinada.
+
 ### `data/calendario.json`
 ```json
 {
@@ -59,13 +66,16 @@ docs/                          # site gerado (não versionado, criado pelo build
   }
 }
 ```
-`tipo` pode ser `feriado`, `avaliacao` ou `evento`. Por padrão **só `feriado`
-cancela aula** — os outros tipos ficam disponíveis nos dados mas não removem
-sessões do cronograma. Isso é configurável em `scripts/config.js`
-(`tiposQueCancelamAula`).
+`tipo` pode ser `feriado`, `avaliacao` ou `evento` — é usado só para o rótulo
+mostrado na página ("Feriado:", "Avaliação:", "Evento:"). **Toda data listada
+aqui cancela a aula da turma naquele dia, independente do tipo.** As aulas
+seguintes da turma são deslocadas para as próximas datas disponíveis (o
+conteúdo da disciplina "empurra" para frente). Na página da turma, o dia
+cancelado aparece como uma linha destacada em vermelho no lugar da aula.
 
-O início/fim do semestre e o rótulo do período (ex: "2/2026") ficam em
-`data/horario_professor.json` (`periodo`, `dataInicio`, `dataFim`).
+Se o semestre terminar antes de todo o `conteudo` da disciplina ser
+encaixado (por causa de muitos cancelamentos), os tópicos que sobraram
+aparecem numa seção **"Tópicos extras:"** no final da página da turma.
 
 ### `data/disciplinas/<CODIGO>.json`
 ```json
@@ -79,8 +89,20 @@ O início/fim do semestre e o rótulo do período (ex: "2/2026") ficam em
 }
 ```
 Cada item da lista `conteudo` é **uma aula**, na ordem em que deve ocorrer.
-O build casa esse item com a 1ª, 2ª, 3ª... data calculada para a turma. Se uma
-disciplina não tiver arquivo, a página é gerada só com as datas (sem título).
+O build casa esse item com a 1ª, 2ª, 3ª... data que realmente vira aula pra
+turma (ou seja, já pulando os dias cancelados pelo `calendario.json`). Se
+uma disciplina não tiver arquivo, a página é gerada só com as datas (sem
+título).
+
+## O que cada página de turma mostra
+
+- Uma tabela com data, dia da semana, horário, tópico e título de cada aula.
+- Uma linha vermelha no lugar de qualquer aula cancelada por um dia do
+  `calendario.json`, com o motivo (ex: "🚫 Feriado: Independência do Brasil").
+- Botão para baixar/imprimir a página em PDF e um link para baixar o
+  arquivo `.ics` da turma.
+- Se sobrar conteúdo (tópicos que não couberam no calendário do semestre),
+  uma seção **"Tópicos extras:"** no final da página.
 
 ## Rodando localmente
 
