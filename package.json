@@ -1,0 +1,9 @@
+{
+  "name": "horario-calendario",
+  "version": "1.0.0",
+  "description": "Gera um site estático de calendário de disciplinas a partir de arquivos JSON.",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.js"
+  }
+}

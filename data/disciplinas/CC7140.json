@@ -1,0 +1,30 @@
+{
+  "codigo": "CC7140",
+  "nome": "Desenvolvimento de Jogos Digitais",
+  "conteudo": [
+    {"Tópico": 1, "titulo": "Introdução da disciplina / Industria de jogos"},
+    {"Tópico": 1, "titulo": "Primeiro contato com o Unity - Pong"},
+    {"Tópico": 2, "titulo": "Definição de Jogos"},
+    {"Tópico": 2, "titulo": "LAB 1 - Air Hockey"},
+    {"Tópico": 3, "titulo": "Game design - Idéias"},
+    {"Tópico": 3, "titulo": "LAB 2 - Arkanoid"},
+    {"Tópico": 4, "titulo": "Gama design - Objetivos"},
+    {"Tópico": 4, "titulo": "LAB 3 - Space Invaders"},
+    {"Tópico": 5, "titulo": "Framework de analise de jogos"},
+    {"Tópico": 5, "titulo": "LAB 4 - SpaceShip"},
+    {"Tópico": 6, "titulo": "Prototipação - Papel"},
+    {"Tópico": 6, "titulo": "LAB 5 - Plataforma"},
+    {"Tópico": 7, "titulo": "Apresentação Parcial do Projeto"},
+    {"Tópico": 7, "titulo": "Apresentação Parcial do Projeto"},
+    {"Tópico": 8, "titulo": "Guiando o jogador"},
+    {"Tópico": 8, "titulo": "Entrega da mecânica do projeto"},
+    {"Tópico": 9, "titulo": "Testes em jogos"},
+    {"Tópico": 9, "titulo": "Testes iniciais do projeto"},
+    {"Tópico": 10, "titulo": "IA em Jogos"},
+    {"Tópico": 10, "titulo": "Entrega da dinâmica do projeto"},
+    {"Tópico": 11, "titulo": "Manual de Intruções"},
+    {"Tópico": 11, "titulo": "Entrega da estética do projeto"},
+    {"Tópico": 12, "titulo": "Apresentação Final do Projeto"},
+    {"Tópico": 12, "titulo": "Apresentação Final do Projeto"}
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "professor": "Fagner de Assis Moura Pimentel",
+  "periodo": "2/2026",
+  "dataInicio": "2026-08-10",
+  "dataFim": "2026-12-18",
+  "disciplinas": [
+    {
+      "disciplina": "CCP120",
+      "turmas": [
+        {
+          "turma": "305",
+          "horarios": [
+            { "dia": "Segunda", "inicio": "13:40", "fim": "15:20" },
+            { "dia": "Segunda", "inicio": "15:30", "fim": "17:10" }
+          ]
+        },
+        {
+          "turma": "301",
+          "horarios": [
+            { "dia": "Segunda", "inicio": "19:10", "fim": "20:50" },
+            { "dia": "Quarta", "inicio": "21:00", "fim": "22:40" }
+          ]
+        }
+      ]
+    },
+    {
+      "disciplina": "CCP310",
+      "turmas": [
+        {
+          "turma": "325",
+          "horarios": [
+            { "dia": "Terca", "inicio": "15:30", "fim": "17:10" }
+          ]
+        },
+        {
+          "turma": "320",
+          "horarios": [
+            { "dia": "Quinta", "inicio": "21:00", "fim": "22:40" }
+          ]
+        }
+      ]
+    },
+    {
+      "disciplina": "CCI130",
+      "turmas": [
+        {
+          "turma": "345",
+          "horarios": [
+            { "dia": "Quarta", "inicio": "17:20", "fim": "19:00" }
+          ]
+        },
+        {
+          "turma": "440",
+          "horarios": [
+            { "dia": "Terca", "inicio": "21:00", "fim": "22:40" }
+          ]
+        }
+      ]
+    },
+    {
+      "disciplina": "CCR210",
+      "turmas": [
+        {
+          "turma": "055",
+          "horarios": [
+            { "dia": "Quinta", "inicio": "13:40", "fim": "15:20" }
+          ]
+        }
+      ]
+    },
+    {
+      "disciplina": "CCR230",
+      "turmas": [
+        {
+          "turma": "085",
+          "horarios": [
+            { "dia": "Quinta", "inicio": "17:20", "fim": "19:00" }
+          ]
+        }
+      ]
+    },
+    {
+      "disciplina": "CCR220",
+      "turmas": [
+        {
+          "turma": "075-375",
+          "horarios": [
+            { "dia": "Quarta", "inicio": "19:10", "fim": "20:50" },
+            { "dia": "Quinta", "inicio": "19:10", "fim": "20:50" }
+          ]
+        }
+      ]
+    },
+    {
+      "disciplina": "CC7140",
+      "turmas": [
+        {
+          "turma": "060/665",
+          "horarios": [
+            { "dia": "Sexta", "inicio": "19:10", "fim": "20:50" },
+            { "dia": "Sexta", "inicio": "17:20", "fim": "19:00" }
+          ]
+        },
+        {
+          "turma": "060/660",
+          "horarios": [
+            { "dia": "Sexta", "inicio": "19:10", "fim": "20:50" },
+            { "dia": "Sexta", "inicio": "21:00", "fim": "22:40" }
+          ]
+        }
+      ]
+    }
+  ]
+}

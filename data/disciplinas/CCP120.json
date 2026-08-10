@@ -1,0 +1,32 @@
+{
+  "codigo": "CCP120",
+  "nome": "Programação Full-Stack",
+  "conteudo": [
+    {"Tópico": 0, "titulo": "Atividades de integração dos calouros"},
+    {"Tópico": 0, "titulo": "Atividades de integração dos calouros"},
+    {"Tópico": 1, "titulo": "Introdução da disciplina e HTML"},
+    {"Tópico": 1, "titulo": "LAB 1 - Página inicial"},
+    {"Tópico": 2, "titulo": "CSS - Introdução "},
+    {"Tópico": 2, "titulo": "LAB 2 - Esqueleto do site"},
+    {"Tópico": 3, "titulo": "CSS - Posicionamento"},
+    {"Tópico": 3, "titulo": "LAB 3 - Copiando um Modelo"},
+    {"Tópico": 4, "titulo": "CSS - Grid"},
+    {"Tópico": 4, "titulo": "CSS - Flexbox"},
+    {"Tópico": 5, "titulo": "JavaScript - Funções e interações"},
+    {"Tópico": 5, "titulo": "LAB 4 - Adivinhação"},
+    {"Tópico": 6, "titulo": "JavaScript - Canvas (introdução)"},
+    {"Tópico": 6, "titulo": "LAB 5 - Canvas"},
+    {"Tópico": 7, "titulo": "JavaScript - Canvas (objetos e animação)"},
+    {"Tópico": 7, "titulo": "LAB 6 - Animação"},
+    {"Tópico": 8, "titulo": "Servidor - Node.js, MVC e express"},
+    {"Tópico": 8, "titulo": "LAB 7 - Servidor estático"},
+    {"Tópico": 9, "titulo": "Servidor - get, post e template"},
+    {"Tópico": 9, "titulo": "LAB 8 - Servidor - Get, Post e Template"},
+    {"Tópico": 10, "titulo": "Servidor - Banco de dados (criar e ler)"},
+    {"Tópico": 10, "titulo": "LAB 9 - BD - Create e Read"},
+    {"Tópico": 11, "titulo": "Servidor - Banco de dados (atualizar e remover)"},
+    {"Tópico": 11, "titulo": "LAB 10 - BD - Update e Delete"},
+    {"Tópico": 12, "titulo": "Apresentação dos projetos"},
+    {"Tópico": 12, "titulo": "Apresentação dos projetos"}
+  ]
+}
