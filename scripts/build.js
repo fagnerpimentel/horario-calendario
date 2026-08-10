@@ -239,7 +239,7 @@ function pageTurma({
 
   return `${htmlHead(`${codigo} - Turma ${turma}`)}
 <div class="container">
-  <a class="voltar" href="index.html">&larr; Voltar para todas as disciplinas</a>
+  <!-- <a class="voltar" href="index.html">&larr; Voltar para todas as disciplinas</a> -->
   <h1>${escapeHtml(codigo)} — ${escapeHtml(nome)}</h1>
   <p class="subtitulo">Turma ${escapeHtml(turma)} · Prof. ${escapeHtml(professor)}</p>
 
