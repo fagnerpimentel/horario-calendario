@@ -3,9 +3,8 @@
   "nome": "Interação Humano Computador",
   "ementa": "Qualidade em IHC, Abordagens Teóricas em IHC, Processos de Design, Identificação de Necessidades dos Usuários e Requisitos, Perfil do Usuário e Análise de Tarefas, Princípios e Diretrizes para o Design. Planejamento e Métodos de Avaliação de IHC.",
   "NotaFinal": {
-    "Formula": "0.1 * LAB + 0.2 * PJ + 0.3 * P1 + 0.4 * P2",
+    "Formula": "2*LAB + 4*P1 + 4*P2",
     "LAB": "Laboratório",
-    "PJ": "Projeto (0 a 10)",
     "P1": "Avaliação Parcial (0 a 10) ",
     "P2": "Avaliação Final (0 a 10) ",
     "P3": "Avaliação Substitutiva [P1 ou P2] (0 a 10)"
