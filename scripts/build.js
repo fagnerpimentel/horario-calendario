@@ -191,20 +191,14 @@ function buildICS({ codigo, nome, turma, sessions }) {
 
 // ---------- páginas ----------
 function pageTurma({
-  professor,
   codigo,
   nome,
-  ementa,
-  notaFinal,
-  criterioAprovacao,
   turma,
   linhas,
   totalAulas,
   conteudoRestante,
   icsFile,
-  site,
-  email,
-  lattes,
+  disciplinaHref,
 }) {
   let numero = 0;
   const rows = linhas
@@ -257,6 +251,50 @@ function pageTurma({
   </div>`
       : "";
 
+  return `${htmlHead(`${codigo} - Turma ${turma}`)}
+<div class="container">
+  <h1>${escapeHtml(codigo)} — Turma ${escapeHtml(turma)}</h1>
+  <p class="subtitulo">${escapeHtml(nome)}</p>
+
+  <h2>Cronograma</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Data</th>
+        <th>Dia</th>
+        <th>Horário</th>
+        <th>Conteúdo</th>
+        <th>Título</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${rows}
+    </tbody>
+  </table>
+  <p class="total">Total de aulas: ${totalAulas}</p>
+  ${restanteHtml}
+
+  <div class="acoes no-print">
+    <button onclick="window.print()">🖨️ Baixar / imprimir página (PDF)</button>
+    <a href="ics/${icsFile}" download>📅 Baixar calendário (.ics)</a>
+  </div>
+</div>
+${htmlFoot()}`;
+}
+
+function pageDisciplina({
+  professor,
+  codigo,
+  nome,
+  ementa,
+  notaFinal,
+  criterioAprovacao,
+  turmas,
+  site,
+  email,
+  lattes,
+}) {
   const ementaHtml = ementa
     ? `<div class="ementa">
     <h2>Ementa</h2>
@@ -294,37 +332,13 @@ function pageTurma({
   </div>`
       : "";
 
-  return `${htmlHead(`${codigo} - Turma ${turma}`)}
+  return `${htmlHead(`${codigo} - ${nome}`)}
 <div class="container">
   <h1>${escapeHtml(codigo)} — ${escapeHtml(nome)}</h1>
-  <p class="subtitulo">Turma ${escapeHtml(turma)} · Prof. ${professorHtml(professor, site)}</p>
+  <p class="subtitulo">Prof. ${professorHtml(professor, site)}</p>
   ${contatoHtml({ email, lattes })}
   ${ementaHtml}
   ${avaliacaoHtml}
-
-  <h2>Cronograma</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Data</th>
-        <th>Dia</th>
-        <th>Horário</th>
-        <th>Conteúdo</th>
-        <th>Título</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${rows}
-    </tbody>
-  </table>
-  <p class="total">Total de aulas: ${totalAulas}</p>
-  ${restanteHtml}
-
-  <div class="acoes no-print">
-    <button onclick="window.print()">🖨️ Baixar / imprimir página (PDF)</button>
-    <a href="ics/${icsFile}" download>📅 Baixar calendário (.ics)</a>
-  </div>
 </div>
 ${htmlFoot()}`;
 }
@@ -361,12 +375,18 @@ function pageIndex({
 }) {
   const cardsHtml = cards
     .map(
-      (c) => `<a class="card" href="${c.href}">
-        <h3>${escapeHtml(c.codigo)}</h3>
+      (c) => `<div class="card card-disciplina">
+        <h3><a href="${c.href}">${escapeHtml(c.codigo)}</a></h3>
         <p>${escapeHtml(c.nome)}</p>
-        <span class="badge">Turma ${escapeHtml(c.turma)}</span>
-        <span class="badge muted">${c.total} aulas</span>
-      </a>`
+        <div class="turma-links">
+          ${c.turmas
+            .map(
+              (t) =>
+                `<a class="badge" href="${t.href}">Turma ${escapeHtml(t.turma)} · ${t.total} aulas</a>`
+            )
+            .join("\n          ")}
+        </div>
+      </div>`
     )
     .join("\n");
 
@@ -415,8 +435,13 @@ th { background: var(--cinza); }
 .card { display:block; border:1px solid #e5e7eb; border-radius:12px; padding:16px; text-decoration:none; color:var(--texto); transition: box-shadow .15s; }
 .card:hover { box-shadow: 0 4px 14px rgba(0,0,0,.08); }
 .card h3 { margin:0 0 4px; color: var(--azul); }
+.card h3 a { color: var(--azul); text-decoration: none; }
+.card h3 a:hover { text-decoration: underline; }
 .card p { margin:0 0 10px; font-size:14px; color:#444; min-height: 34px; }
+.card-disciplina .turma-links { display:flex; flex-wrap:wrap; gap:6px; }
 .badge { display:inline-block; font-size:12px; background:var(--cinza); border-radius:999px; padding:3px 10px; margin-right:6px; }
+a.badge { color: var(--texto); text-decoration:none; }
+a.badge:hover { background:#e5e7eb; }
 .badge.muted { color:#666; }
 .aviso { background:#fff7ed; border:1px solid #fdba74; padding:10px 14px; border-radius:8px; font-size:14px; }
 .ementa { margin: 12px 0 20px; padding: 12px 16px; background:#f8fafc; border-left:3px solid var(--azul); border-radius:6px; }
@@ -457,6 +482,7 @@ function main() {
 
   const cards = [];
   const semEspecificacao = [];
+  let totalPaginasTurma = 0;
 
   for (const disc of horario.disciplinas) {
     const spec = loadDisciplinaSpec(disc.disciplina);
@@ -466,6 +492,9 @@ function main() {
     const ementa = spec ? spec.ementa : null;
     const notaFinal = spec ? spec.NotaFinal : null;
     const criterioAprovacao = spec ? spec.CriterioAprovacao : null;
+
+    const disciplinaFile = `${disc.disciplina}.html`;
+    const turmasDaDisciplina = [];
 
     for (const turma of disc.turmas) {
       const { sessions, todas } = buildSessions(
@@ -501,31 +530,47 @@ function main() {
       fs.writeFileSync(
         path.join(OUT_DIR, pageFile),
         pageTurma({
-          professor: horario.professor,
           codigo: disc.disciplina,
           nome,
-          ementa,
-          notaFinal,
-          criterioAprovacao,
           turma: turma.turma,
           linhas: todas,
           totalAulas: sessions.length,
           conteudoRestante,
           icsFile,
-          site: horario.site,
-          email: horario.email,
-          lattes: horario.lattes,
+          disciplinaHref: disciplinaFile,
         })
       );
+      totalPaginasTurma += 1;
 
-      cards.push({
-        codigo: disc.disciplina,
-        nome,
+      turmasDaDisciplina.push({
         turma: turma.turma,
         href: pageFile,
         total: sessions.length,
       });
     }
+
+    fs.writeFileSync(
+      path.join(OUT_DIR, disciplinaFile),
+      pageDisciplina({
+        professor: horario.professor,
+        codigo: disc.disciplina,
+        nome,
+        ementa,
+        notaFinal,
+        criterioAprovacao,
+        turmas: turmasDaDisciplina,
+        site: horario.site,
+        email: horario.email,
+        lattes: horario.lattes,
+      })
+    );
+
+    cards.push({
+      codigo: disc.disciplina,
+      nome,
+      href: disciplinaFile,
+      turmas: turmasDaDisciplina,
+    });
   }
 
   fs.writeFileSync(
@@ -543,7 +588,9 @@ function main() {
     })
   );
 
-  console.log(`Site gerado em ${OUT_DIR} (${cards.length} páginas de turma).`);
+  console.log(
+    `Site gerado em ${OUT_DIR} (${cards.length} páginas de disciplina, ${totalPaginasTurma} páginas de turma).`
+  );
   if (semEspecificacao.length) {
     console.log(
       `Aviso: sem arquivo de conteúdo para: ${semEspecificacao.join(", ")}`
