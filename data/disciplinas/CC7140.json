@@ -1,6 +1,16 @@
 {
   "codigo": "CC7140",
   "nome": "Desenvolvimento de Jogos Digitais",
+  "ementa": "Conceitos de Jogos, Planejamento e arquitetura básica, efeitos gráficos, Conceito de desenvolvimento de projetos de jogos. Tipos de jogos. Engines. Implementação.",
+  "NotaFinal": {
+    "Formula": "0.1 * LAB + 0.2 * PJ + 0.3 * P1 + 0.4 * P2",
+    "LAB": "Laboratório",
+    "PJ": "Projeto (0 a 10)",
+    "P1": "Avaliação Parcial (0 a 10) ",
+    "P2": "Avaliação Final (0 a 10) ",
+    "P3": "Avaliação Substitutiva [P1 ou P2] (0 a 10)"
+  },
+  "CriterioAprovacao": "As atividades de avaliação indicadas devem compor, com os devidos pesos, uma nota final que representa o “desempenho final” do aluno (NF). Para ser considerado aprovado na disciplina, o aluno deve ter pelo menos 75% de presença e obter nota final maior ou igual a 5,0 (cinco).",
   "conteudo": [
     {"Tópico": 1, "titulo": "Introdução da disciplina / Industria de jogos"},
     {"Tópico": 1, "titulo": "Primeiro contato com o Unity - Pong"},

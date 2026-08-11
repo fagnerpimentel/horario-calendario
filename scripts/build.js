@@ -69,6 +69,18 @@ const TIPO_LABEL = {
   evento: "Evento",
 };
 
+const TIPO_EMOJI = {
+  feriado: "🔴",
+  avaliacao: "🟡",
+  evento: "🟢",
+};
+
+const TIPO_CLASS = {
+  feriado: "tipo-feriado",
+  avaliacao: "tipo-avaliacao",
+  evento: "tipo-evento",
+};
+
 function sanitizeFileName(s) {
   return String(s).replace(/[\\/:*?"<>|]/g, "-");
 }
@@ -182,11 +194,17 @@ function pageTurma({
   professor,
   codigo,
   nome,
+  ementa,
+  notaFinal,
+  criterioAprovacao,
   turma,
   linhas,
   totalAulas,
   conteudoRestante,
   icsFile,
+  site,
+  email,
+  lattes,
 }) {
   let numero = 0;
   const rows = linhas
@@ -194,12 +212,14 @@ function pageTurma({
       const dataFmt = s.iso.split("-").reverse().join("/");
       if (s.cancelada) {
         const rotulo = TIPO_LABEL[s.tipoCancelamento] || "Sem aula";
-        return `<tr class="feriado">
+        const emoji = TIPO_EMOJI[s.tipoCancelamento] || "🚫";
+        const classe = TIPO_CLASS[s.tipoCancelamento] || "";
+        return `<tr class="${classe}">
         <td>—</td>
         <td>${dataFmt}</td>
         <td>${s.weekdayLabel}</td>
         <td>${s.inicio} - ${s.fim}</td>
-        <td colspan="2">🚫 ${rotulo}: ${escapeHtml(s.motivoCancelamento)}</td>
+        <td colspan="2">${emoji} ${rotulo}: ${escapeHtml(s.motivoCancelamento)}</td>
       </tr>`;
       }
       numero += 1;
@@ -237,17 +257,52 @@ function pageTurma({
   </div>`
       : "";
 
+  const ementaHtml = ementa
+    ? `<div class="ementa">
+    <h2>Ementa</h2>
+    <p>${escapeHtml(ementa)}</p>
+  </div>`
+    : "";
+
+  const avaliacaoHtml =
+    notaFinal || criterioAprovacao
+      ? `<div class="avaliacao">
+    <h2>Avaliação</h2>
+    ${
+      notaFinal && notaFinal.Formula
+        ? `<p class="formula"><strong>Nota final:</strong> ${escapeHtml(notaFinal.Formula)}</p>`
+        : ""
+    }
+    ${
+      notaFinal
+        ? `<ul class="legenda-lista">
+      ${Object.entries(notaFinal)
+        .filter(([sigla]) => sigla !== "Formula")
+        .map(
+          ([sigla, desc]) =>
+            `<li><strong>${escapeHtml(sigla)}</strong>: ${escapeHtml(desc)}</li>`
+        )
+        .join("\n      ")}
+    </ul>`
+        : ""
+    }
+    ${
+      criterioAprovacao
+        ? `<p class="criterio">${escapeHtml(criterioAprovacao)}</p>`
+        : ""
+    }
+  </div>`
+      : "";
+
   return `${htmlHead(`${codigo} - Turma ${turma}`)}
 <div class="container">
-  <!-- <a class="voltar" href="index.html">&larr; Voltar para todas as disciplinas</a> -->
   <h1>${escapeHtml(codigo)} — ${escapeHtml(nome)}</h1>
-  <p class="subtitulo">Turma ${escapeHtml(turma)} · Prof. ${escapeHtml(professor)}</p>
+  <p class="subtitulo">Turma ${escapeHtml(turma)} · Prof. ${professorHtml(professor, site)}</p>
+  ${contatoHtml({ email, lattes })}
+  ${ementaHtml}
+  ${avaliacaoHtml}
 
-  <div class="acoes no-print">
-    <button onclick="window.print()">🖨️ Baixar / imprimir página (PDF)</button>
-    <a href="ics/${icsFile}" download>📅 Baixar calendário (.ics)</a>
-  </div>
-
+  <h2>Cronograma</h2>
   <table>
     <thead>
       <tr>
@@ -265,11 +320,45 @@ function pageTurma({
   </table>
   <p class="total">Total de aulas: ${totalAulas}</p>
   ${restanteHtml}
+
+  <div class="acoes no-print">
+    <button onclick="window.print()">🖨️ Baixar / imprimir página (PDF)</button>
+    <a href="ics/${icsFile}" download>📅 Baixar calendário (.ics)</a>
+  </div>
 </div>
 ${htmlFoot()}`;
 }
 
-function pageIndex({ professor, periodoLabel, periodoInicio, periodoFim, cards, semEspec }) {
+function contatoHtml({ email, lattes }) {
+  const links = [];
+  if (email) links.push(`<a href="mailto:${escapeAttr(email)}">✉️ ${escapeHtml(email)}</a>`);
+  if (lattes) links.push(`<a href="${escapeAttr(lattes)}" target="_blank" rel="noopener">🎓 Lattes</a>`);
+  if (!links.length) return "";
+  return `<p class="contato">${links.join(" · ")}</p>`;
+}
+
+function professorHtml(professor, site) {
+  const nome = escapeHtml(professor);
+  return site
+    ? `<a href="${escapeAttr(site)}" target="_blank" rel="noopener">${nome}</a>`
+    : nome;
+}
+
+function escapeAttr(s) {
+  return escapeHtml(s).replace(/"/g, "&quot;");
+}
+
+function pageIndex({
+  professor,
+  periodoLabel,
+  periodoInicio,
+  periodoFim,
+  cards,
+  semEspec,
+  site,
+  email,
+  lattes,
+}) {
   const cardsHtml = cards
     .map(
       (c) => `<a class="card" href="${c.href}">
@@ -290,9 +379,10 @@ function pageIndex({ professor, periodoLabel, periodoInicio, periodoFim, cards, 
   return `${htmlHead(`Calendário do semestre — ${professor}`)}
 <div class="container">
   <h1>Calendário do semestre</h1>
-  <p class="subtitulo">Prof. ${escapeHtml(professor)} · Período ${escapeHtml(
+  <p class="subtitulo">Prof. ${professorHtml(professor, site)} · Período ${escapeHtml(
     periodoLabel
   )} (${periodoInicio} a ${periodoFim})</p>
+  ${contatoHtml({ email, lattes })}
   ${avisoSemEspec}
   <div class="grid">
     ${cardsHtml}
@@ -309,6 +399,9 @@ body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; marg
 .container { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
 h1 { margin-bottom: 4px; }
 .subtitulo { color:#555; margin-top:0; }
+.contato { margin: 4px 0 16px; font-size: 13px; }
+.contato a { color: var(--azul); text-decoration: none; }
+.contato a:hover { text-decoration: underline; }
 .voltar { display:inline-block; margin-bottom:16px; color:var(--azul); text-decoration:none; }
 .voltar:hover { text-decoration: underline; }
 .acoes { display:flex; gap:12px; margin: 16px 0 24px; flex-wrap: wrap; }
@@ -326,7 +419,18 @@ th { background: var(--cinza); }
 .badge { display:inline-block; font-size:12px; background:var(--cinza); border-radius:999px; padding:3px 10px; margin-right:6px; }
 .badge.muted { color:#666; }
 .aviso { background:#fff7ed; border:1px solid #fdba74; padding:10px 14px; border-radius:8px; font-size:14px; }
-tr.feriado td { background:#fef2f2; color:#991b1b; font-style: italic; }
+.ementa { margin: 12px 0 20px; padding: 12px 16px; background:#f8fafc; border-left:3px solid var(--azul); border-radius:6px; }
+.ementa h2 { margin:0 0 6px; font-size:14px; color:var(--azul); text-transform:uppercase; letter-spacing:.03em; }
+.ementa p { margin:0; font-size:14px; color:#374151; line-height:1.5; }
+.avaliacao { margin-top:24px; padding:16px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; }
+.avaliacao h2 { margin:0 0 8px; font-size:16px; }
+.avaliacao .formula { font-size:14px; margin:0 0 8px; }
+.legenda-lista { margin:0 0 10px; padding-left:20px; font-size:13px; color:#444; }
+.legenda-lista li { margin-bottom:3px; }
+.avaliacao .criterio { font-size:13px; color:#555; margin:0; line-height:1.5; }
+tr.tipo-feriado td { background:#fef2f2; color:#991b1b; font-style: italic; }
+tr.tipo-avaliacao td { background:#fefce8; color:#854d0e; font-style: italic; }
+tr.tipo-evento td { background:#f0fdf4; color:#166534; font-style: italic; }
 .restante { margin-top:32px; padding:16px; background:#f9fafb; border:1px dashed #d1d5db; border-radius:10px; }
 .restante h2 { margin:0 0 6px; font-size:16px; }
 .riscado-lista { margin:0; padding-left:20px; color:#888; font-size:14px; }
@@ -359,6 +463,9 @@ function main() {
     if (!spec) semEspecificacao.push(disc.disciplina);
     const nome = spec ? spec.nome : disc.disciplina;
     const conteudo = spec ? spec.conteudo : [];
+    const ementa = spec ? spec.ementa : null;
+    const notaFinal = spec ? spec.NotaFinal : null;
+    const criterioAprovacao = spec ? spec.CriterioAprovacao : null;
 
     for (const turma of disc.turmas) {
       const { sessions, todas } = buildSessions(
@@ -397,11 +504,17 @@ function main() {
           professor: horario.professor,
           codigo: disc.disciplina,
           nome,
+          ementa,
+          notaFinal,
+          criterioAprovacao,
           turma: turma.turma,
           linhas: todas,
           totalAulas: sessions.length,
           conteudoRestante,
           icsFile,
+          site: horario.site,
+          email: horario.email,
+          lattes: horario.lattes,
         })
       );
 
@@ -424,6 +537,9 @@ function main() {
       periodoFim: horario.dataFim.split("-").reverse().join("/"),
       cards,
       semEspec: semEspecificacao,
+      site: horario.site,
+      email: horario.email,
+      lattes: horario.lattes,
     })
   );
 
