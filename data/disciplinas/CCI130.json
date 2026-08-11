@@ -12,16 +12,15 @@
   "CriterioAprovacao": "As atividades de avaliação indicadas devem compor, com os devidos pesos, uma nota final que representa o “desempenho final” do aluno (NF). Para ser considerado aprovado na disciplina, o aluno deve ter pelo menos 75% de presença e obter nota final maior ou igual a 5,0 (cinco).",
   "conteudo": [
     {"Tópico": 1, "titulo": "Introdução"},
-    {"Tópico": 2, "titulo": "Histórico de IHC"},
-    {"Tópico": 3, "titulo": "Conceitos Básicos"},
-    {"Tópico": 4, "titulo": "Fatores Humanos em Sistemas Computacionais"},
-    {"Tópico": 5, "titulo": "Abordagens Teóricas em IHC"},
-    {"Tópico": 6, "titulo": "Processos de Design de IHC"},
-    {"Tópico": 7, "titulo": "Identificação de Necessidades dos Usuários e Definição dos Requisitos de IHC"},
-    {"Tópico": 8, "titulo": "Organização do Espaço de Problema"},
-    {"Tópico": 9, "titulo": "Design de IHC"},
-    {"Tópico": 10, "titulo": "Princípios e Diretrizes para o Design de IHC"},
-    {"Tópico": 11, "titulo": "Planejamento da Avaliação de IHC"},
-    {"Tópico": 12, "titulo": "Métodos de Avaliação de IHC"}
+    {"Tópico": 2, "titulo": "Conceitos Básicos"},
+    {"Tópico": 3, "titulo": "Fatores Humanos em Sistemas Computacionais"},
+    {"Tópico": 4, "titulo": "Abordagens Teóricas em IHC"},
+    {"Tópico": 5, "titulo": "Processos de Design de IHC"},
+    {"Tópico": 6, "titulo": "Identificação de Necessidades dos Usuários e Definição dos Requisitos de IHC"},
+    {"Tópico": 7, "titulo": "Organização do Espaço de Problema"},
+    {"Tópico": 8, "titulo": "Design de IHC"},
+    {"Tópico": 9, "titulo": "Princípios e Diretrizes para o Design de IHC"},
+    {"Tópico": 10, "titulo": "Planejamento da Avaliação de IHC"},
+    {"Tópico": 11, "titulo": "Métodos de Avaliação de IHC"}
   ]
 }
