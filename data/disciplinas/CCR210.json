@@ -1,0 +1,27 @@
+{
+  "codigo": "CCR210",
+  "nome": "Navegação de Robôs Móveis",
+  "ementa": "Mapas; Campos Potenciais; Planejamento de Rotas e Trajetórias; Decomposição de Células; Árvore de Exploração randômica Rápida (RRT's); Diagrama de Voronoi",
+  "NotaFinal": {
+    "Formula": "2*LAB + 2*PJ + 3*P1 + 3*P2",
+    "LAB": "Laboratório",
+    "PJ": "Projeto (0 a 10)",
+    "P1": "Avaliação Parcial (0 a 10) ",
+    "P2": "Avaliação Final (0 a 10) ",
+    "P3": "Avaliação Substitutiva [P1 ou P2] (0 a 10)"
+  },
+  "CriterioAprovacao": "As atividades de avaliação indicadas devem compor, com os devidos pesos, uma nota final que representa o “desempenho final” do aluno (NF). Para ser considerado aprovado na disciplina, o aluno deve ter pelo menos 75% de presença e obter nota final maior ou igual a 5,0 (cinco).",
+  "conteudo": [
+    {"Tópico": 1, "titulo": "Introdução"},
+    {"Tópico": 2, "titulo": "Locomoção"},
+    {"Tópico": 3, "titulo": "LAB - Locomoção"},
+    {"Tópico": 4, "titulo": "Cinemática"},
+    {"Tópico": 5, "titulo": "LAB - Cinemática"},
+    {"Tópico": 6, "titulo": "Planejamento"},
+    {"Tópico": 7, "titulo": "LAB - Wavefront "},
+    {"Tópico": 8, "titulo": "LAB - AEstrela"},
+    {"Tópico": 9, "titulo": "LAB - RRT"},
+    {"Tópico": 10, "titulo": "LAB - Campos Potenciais"},
+    {"Tópico": 11, "titulo": "Revisão"}
+  ]
+}
