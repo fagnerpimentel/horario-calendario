@@ -13,14 +13,14 @@
   "conteudo": [
     {"Tópico": 1, "titulo": "Introdução à robótica probabilística"},
     {"Tópico": 1, "titulo": "Ambiente de trabalho da disciplina"},
-    {"Tópico": 2, "titulo": "Navegação do ROS - Robôs Simulados"},
-    {"Tópico": 2, "titulo": "Navegação do ROS - Robôs Reais"},
-    {"Tópico": 3, "titulo": "Localização de Markov"},
-    {"Tópico": 3, "titulo": "LAB: Localização de Markov"},
+    {"Tópico": 2, "titulo": "Navegação do ROS - Robôs Simulados e Reais"},
+    {"Tópico": 3, "titulo": "Estimativa de Estado Recursivo"},
+    {"Tópico": 3, "titulo": "LAB: Filtro de Bayes"},
     {"Tópico": 4, "titulo": "Filtro de Kalman"},
     {"Tópico": 4, "titulo": "LAB: Filtro de Kalman"},
     {"Tópico": 5, "titulo": "Filtro de Kalman estendido"},
     {"Tópico": 5, "titulo": "LAB: Filtro de Kalman estendido"},
+    {"Tópico": "R", "titulo": "Revisão"},
     {"Tópico": 6, "titulo": "Mapeamento"},
     {"Tópico": 6, "titulo": "LAB: Mapeamento"},
     {"Tópico": 7, "titulo": "Localização de Monte Carlo"},
@@ -33,7 +33,6 @@
     {"Tópico": 10, "titulo": "LAB: Graph SLAM"},
     {"Tópico": 11, "titulo": "Visual SLAM"},
     {"Tópico": 11, "titulo": "LAB: Visual SLAM"}, 
-    {"Tópico": 12, "titulo": ""},
-    {"Tópico": 12, "titulo": ""}
+    {"Tópico": "R", "titulo": "Revisão"}
   ]
 }
