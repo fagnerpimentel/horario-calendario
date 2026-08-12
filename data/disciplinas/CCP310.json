@@ -3,7 +3,7 @@
   "nome": "Experiência do Usuário e Front-End",
   "ementa": "Fundamentos UX e design centrado no usuário; Princípios de design de interfaces e usabilidade; Arquitetura da informação; Ferramentas e técnicas de prototipação e wireframing; Desenvolvimento front-end utilizando HTML, CSS e JavaScript; Responsividade e acessibilidade; Introdução aos frameworks front-end (ex: React, Angular, Vue.js).",
   "NotaFinal": {
-    "Formula": "sqrt(PJ (P1+P2)/2",
+    "Formula": "sqrt(PJ * (P1+P2)/2)",
     "PJ": "Projeto (0 a 10)",
     "P1": "Avaliação Parcial (0 a 10) ",
     "P2": "Avaliação Final (0 a 10) ",

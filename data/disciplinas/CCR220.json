@@ -1,0 +1,39 @@
+{
+  "codigo": "CCR220",
+  "nome": "Robótica Probabilística ",
+  "ementa": "Filtros de Kalman, Particulas e Bayesianos; Modelos de Movimento; Mapeamento e Localização Simultâneous; Localização de Monte Carlo e Cadeias de Markov.",
+  "NotaFinal": {
+    "Formula": "0.4*LAB + 0.3*P1 + 0.3*P2",
+    "LAB": "Laboratório",
+    "P1": "Avaliação Parcial (0 a 10) ",
+    "P2": "Avaliação Final (0 a 10) ",
+    "P3": "Avaliação Substitutiva [P1 ou P2] (0 a 10)"
+  },
+  "CriterioAprovacao": "As atividades de avaliação indicadas devem compor, com os devidos pesos, uma nota final que representa o “desempenho final” do aluno (NF). Para ser considerado aprovado na disciplina, o aluno deve ter pelo menos 75% de presença e obter nota final maior ou igual a 5,0 (cinco).",
+  "conteudo": [
+    {"Tópico": 1, "titulo": "Introdução à robótica probabilística"},
+    {"Tópico": 1, "titulo": "Ambiente de trabalho da disciplina"},
+    {"Tópico": 2, "titulo": "Navegação do ROS - Robôs Simulados"},
+    {"Tópico": 2, "titulo": "Navegação do ROS - Robôs Reais"},
+    {"Tópico": 3, "titulo": "Localização de Markov"},
+    {"Tópico": 3, "titulo": "LAB: Localização de Markov"},
+    {"Tópico": 4, "titulo": "Filtro de Kalman"},
+    {"Tópico": 4, "titulo": "LAB: Filtro de Kalman"},
+    {"Tópico": 5, "titulo": "Filtro de Kalman estendido"},
+    {"Tópico": 5, "titulo": "LAB: Filtro de Kalman estendido"},
+    {"Tópico": 6, "titulo": "Mapeamento"},
+    {"Tópico": 6, "titulo": "LAB: Mapeamento"},
+    {"Tópico": 7, "titulo": "Localização de Monte Carlo"},
+    {"Tópico": 7, "titulo": "LAB: Localização de Monte Carlo"},
+    {"Tópico": 8, "titulo": "Fast SLAM"},
+    {"Tópico": 8, "titulo": "LAB: Fast SLAM"},
+    {"Tópico": 9, "titulo": "Scan Matching"},
+    {"Tópico": 9, "titulo": "LAB: Scan Matching"},
+    {"Tópico": 10, "titulo": "Graph SLAM"},
+    {"Tópico": 10, "titulo": "LAB: Graph SLAM"},
+    {"Tópico": 11, "titulo": "Visual SLAM"},
+    {"Tópico": 11, "titulo": "LAB: Visual SLAM"}, 
+    {"Tópico": 12, "titulo": ""},
+    {"Tópico": 12, "titulo": ""}
+  ]
+}

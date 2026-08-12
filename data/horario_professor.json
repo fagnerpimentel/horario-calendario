@@ -61,23 +61,31 @@
       ]
     },
     {
+      "disciplina": "CC7140",
+      "turmas": [
+        {
+          "turma": "060/665",
+          "horarios": [
+            { "dia": "Sexta", "inicio": "19:10", "fim": "20:50" },
+            { "dia": "Sexta", "inicio": "17:20", "fim": "19:00" }
+          ]
+        },
+        {
+          "turma": "060/660",
+          "horarios": [
+            { "dia": "Sexta", "inicio": "19:10", "fim": "20:50" },
+            { "dia": "Sexta", "inicio": "21:00", "fim": "22:40" }
+          ]
+        }
+      ]
+    },
+    {
       "disciplina": "CCR210",
       "turmas": [
         {
           "turma": "055",
           "horarios": [
             { "dia": "Quinta", "inicio": "13:40", "fim": "15:20" }
-          ]
-        }
-      ]
-    },
-    {
-      "disciplina": "CCR230",
-      "turmas": [
-        {
-          "turma": "085",
-          "horarios": [
-            { "dia": "Quinta", "inicio": "17:20", "fim": "19:00" }
           ]
         }
       ]
@@ -93,22 +101,14 @@
           ]
         }
       ]
-    },
+    },    
     {
-      "disciplina": "CC7140",
+      "disciplina": "CCR230",
       "turmas": [
         {
-          "turma": "060/665",
+          "turma": "085",
           "horarios": [
-            { "dia": "Sexta", "inicio": "19:10", "fim": "20:50" },
-            { "dia": "Sexta", "inicio": "17:20", "fim": "19:00" }
-          ]
-        },
-        {
-          "turma": "060/660",
-          "horarios": [
-            { "dia": "Sexta", "inicio": "19:10", "fim": "20:50" },
-            { "dia": "Sexta", "inicio": "21:00", "fim": "22:40" }
+            { "dia": "Quinta", "inicio": "17:20", "fim": "19:00" }
           ]
         }
       ]
