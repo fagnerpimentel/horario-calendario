@@ -113,6 +113,7 @@ function buildSessions(turma, periodoStart, periodoEnd, feriados) {
         weekdayLabel: WEEKDAY_LABEL[date.getDay()],
         inicio: h.inicio,
         fim: h.fim,
+        local: h.local,
         cancelada,
         motivoCancelamento: cancelada ? especial.titulo : null,
         tipoCancelamento: cancelada ? especial.tipo : null,
@@ -162,13 +163,8 @@ function icsEscape(s) {
   return String(s).replace(/([,;])/g, "\\$1").replace(/\n/g, "\\n");
 }
 
-function buildICS({ codigo, nome, turma, sessions }) {
-  const lines = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//horario-calendario//PT-BR",
-    "CALSCALE:GREGORIAN",
-  ];
+function icsEvents({ codigo, turma, sessions }) {
+  const lines = [];
   sessions.forEach((s, idx) => {
     const dtStart = `${s.iso.replace(/-/g, "")}T${s.inicio.replace(":", "")}00`;
     const dtEnd = `${s.iso.replace(/-/g, "")}T${s.fim.replace(":", "")}00`;
@@ -182,9 +178,24 @@ function buildICS({ codigo, nome, turma, sessions }) {
       `DTEND:${dtEnd}`,
       `SUMMARY:${summary}`,
       `DESCRIPTION:${desc}`,
+      ...(s.local ? [`LOCATION:${icsEscape(s.local)}`] : []),
       "END:VEVENT"
     );
   });
+  return lines;
+}
+
+// aulas: array de { codigo, turma, sessions } — uma ou mais turmas no mesmo arquivo.
+function buildICS(aulas) {
+  const lines = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//horario-calendario//PT-BR",
+    "CALSCALE:GREGORIAN",
+  ];
+  for (const aula of aulas) {
+    lines.push(...icsEvents(aula));
+  }
   lines.push("END:VCALENDAR");
   return lines.join("\r\n");
 }
@@ -213,7 +224,7 @@ function pageTurma({
         <td>${dataFmt}</td>
         <td>${s.weekdayLabel}</td>
         <td>${s.inicio} - ${s.fim}</td>
-        <td colspan="2">${emoji} ${rotulo}: ${escapeHtml(s.motivoCancelamento)}</td>
+        <td colspan="3">${emoji} ${rotulo}: ${escapeHtml(s.motivoCancelamento)}</td>
       </tr>`;
       }
       numero += 1;
@@ -226,6 +237,7 @@ function pageTurma({
         <td>${dataFmt}</td>
         <td>${s.weekdayLabel}</td>
         <td>${s.inicio} - ${s.fim}</td>
+        <td>${escapeHtml(s.local || "—")}</td>
         <td>${escapeHtml(topico)}</td>
         <td>${escapeHtml(s.titulo || "—")}</td>
       </tr>`;
@@ -264,6 +276,7 @@ function pageTurma({
         <th>Data</th>
         <th>Dia</th>
         <th>Horário</th>
+        <th>Local</th>
         <th>Conteúdo</th>
         <th>Título</th>
       </tr>
@@ -372,6 +385,7 @@ function pageIndex({
   site,
   email,
   lattes,
+  icsFile,
 }) {
   const cardsHtml = cards
     .map(
@@ -404,6 +418,9 @@ function pageIndex({
   )} (${periodoInicio} a ${periodoFim})</p>
   ${contatoHtml({ email, lattes })}
   ${avisoSemEspec}
+  <div class="acoes no-print">
+    <a href="ics/${icsFile}" download>📅 Baixar calendário completo (.ics)</a>
+  </div>
   <div class="grid">
     ${cardsHtml}
   </div>
@@ -482,6 +499,7 @@ function main() {
 
   const cards = [];
   const semEspecificacao = [];
+  const todasAsAulas = [];
   let totalPaginasTurma = 0;
 
   for (const disc of horario.disciplinas) {
@@ -516,13 +534,9 @@ function main() {
       const icsFile = `${disc.disciplina}_${sanitizeFileName(turma.turma)}.ics`;
       fs.writeFileSync(
         path.join(OUT_DIR, "ics", icsFile),
-        buildICS({
-          codigo: disc.disciplina,
-          nome,
-          turma: turma.turma,
-          sessions,
-        })
+        buildICS([{ codigo: disc.disciplina, turma: turma.turma, sessions }])
       );
+      todasAsAulas.push({ codigo: disc.disciplina, turma: turma.turma, sessions });
 
       const conteudoRestante = conteudo.slice(sessions.length);
 
@@ -573,6 +587,12 @@ function main() {
     });
   }
 
+  const icsFileGeral = "calendario_geral.ics";
+  fs.writeFileSync(
+    path.join(OUT_DIR, "ics", icsFileGeral),
+    buildICS(todasAsAulas)
+  );
+
   fs.writeFileSync(
     path.join(OUT_DIR, "index.html"),
     pageIndex({
@@ -585,6 +605,7 @@ function main() {
       site: horario.site,
       email: horario.email,
       lattes: horario.lattes,
+      icsFile: icsFileGeral,
     })
   );
 

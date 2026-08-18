@@ -13,15 +13,15 @@
         {
           "turma": "305",
           "horarios": [
-            { "dia": "Segunda", "inicio": "13:40", "fim": "15:20" },
-            { "dia": "Segunda", "inicio": "15:30", "fim": "17:10" }
+            { "dia": "Segunda", "inicio": "13:40", "fim": "15:20", "local": "K401" },
+            { "dia": "Segunda", "inicio": "15:30", "fim": "17:10", "local": "K401" }
           ]
         },
         {
           "turma": "301",
           "horarios": [
-            { "dia": "Segunda", "inicio": "19:10", "fim": "20:50" },
-            { "dia": "Quarta", "inicio": "21:00", "fim": "22:40" }
+            { "dia": "Segunda", "inicio": "19:10", "fim": "20:50", "local": "K308" },
+            { "dia": "Quarta", "inicio": "21:00", "fim": "22:40", "local": "K308" }
           ]
         }
       ]
@@ -32,13 +32,13 @@
         {
           "turma": "325",
           "horarios": [
-            { "dia": "Terca", "inicio": "15:30", "fim": "17:10" }
+            { "dia": "Terca", "inicio": "15:30", "fim": "17:10", "local": "K409" }
           ]
         },
         {
           "turma": "320",
           "horarios": [
-            { "dia": "Quinta", "inicio": "21:00", "fim": "22:40" }
+            { "dia": "Quinta", "inicio": "21:00", "fim": "22:40", "local": "K409" }
           ]
         }
       ]
@@ -49,13 +49,13 @@
         {
           "turma": "345",
           "horarios": [
-            { "dia": "Quarta", "inicio": "17:20", "fim": "19:00" }
+            { "dia": "Quarta", "inicio": "17:20", "fim": "19:00", "local": "K409" }
           ]
         },
         {
           "turma": "440",
           "horarios": [
-            { "dia": "Terca", "inicio": "21:00", "fim": "22:40" }
+            { "dia": "Terca", "inicio": "21:00", "fim": "22:40", "local": "K409" }
           ]
         }
       ]
@@ -66,15 +66,15 @@
         {
           "turma": "060/665",
           "horarios": [
-            { "dia": "Sexta", "inicio": "19:10", "fim": "20:50" },
-            { "dia": "Sexta", "inicio": "17:20", "fim": "19:00" }
+            { "dia": "Sexta", "inicio": "19:10", "fim": "20:50", "local": "K302" },
+            { "dia": "Sexta", "inicio": "17:20", "fim": "19:00", "local": "K302" }
           ]
         },
         {
           "turma": "060/660",
           "horarios": [
-            { "dia": "Sexta", "inicio": "19:10", "fim": "20:50" },
-            { "dia": "Sexta", "inicio": "21:00", "fim": "22:40" }
+            { "dia": "Sexta", "inicio": "19:10", "fim": "20:50", "local": "K302" },
+            { "dia": "Sexta", "inicio": "21:00", "fim": "22:40", "local": "K302" }
           ]
         }
       ]
@@ -85,7 +85,7 @@
         {
           "turma": "055",
           "horarios": [
-            { "dia": "Quinta", "inicio": "13:40", "fim": "15:20" }
+            { "dia": "Quinta", "inicio": "13:40", "fim": "15:20", "local": "K404" }
           ]
         }
       ]
@@ -96,8 +96,8 @@
         {
           "turma": "075-375",
           "horarios": [
-            { "dia": "Quarta", "inicio": "19:10", "fim": "20:50" },
-            { "dia": "Quinta", "inicio": "19:10", "fim": "20:50" }
+            { "dia": "Quarta", "inicio": "19:10", "fim": "20:50", "local": "K404" },
+            { "dia": "Quinta", "inicio": "19:10", "fim": "20:50", "local": "K404" }
           ]
         }
       ]
@@ -108,7 +108,7 @@
         {
           "turma": "085",
           "horarios": [
-            { "dia": "Quinta", "inicio": "17:20", "fim": "19:00" }
+            { "dia": "Quinta", "inicio": "17:20", "fim": "19:00", "local": "K404" }
           ]
         }
       ]
