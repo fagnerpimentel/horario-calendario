@@ -307,6 +307,7 @@ function pageDisciplina({
   site,
   email,
   lattes,
+  foto,
 }) {
   const ementaHtml = ementa
     ? `<div class="ementa">
@@ -345,11 +346,20 @@ function pageDisciplina({
   </div>`
       : "";
 
+  const fotoHtml = foto
+    ? `<img src="${escapeAttr(foto)}" alt="Foto de ${escapeAttr(professor)}" class="foto-professor" />`
+    : "";
+
   return `${htmlHead(`${codigo} - ${nome}`)}
 <div class="container">
   <h1>${escapeHtml(codigo)} — ${escapeHtml(nome)}</h1>
-  <p class="subtitulo">Prof. ${professorHtml(professor, site)}</p>
-  ${contatoHtml({ email, lattes })}
+  <div class="professor-header">
+    ${fotoHtml}
+    <div>
+      <p class="subtitulo">Prof. ${professorHtml(professor, site)}</p>
+      ${contatoHtml({ email, lattes })}
+    </div>
+  </div>
   ${ementaHtml}
   ${avaliacaoHtml}
 </div>
@@ -436,6 +446,8 @@ body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; marg
 .container { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
 h1 { margin-bottom: 4px; }
 .subtitulo { color:#555; margin-top:0; }
+.professor-header { display:flex; align-items:center; gap:14px; }
+.foto-professor { width:72px; height:72px; border-radius:50%; object-fit:cover; flex-shrink:0; }
 .contato { margin: 4px 0 16px; font-size: 13px; }
 .contato a { color: var(--azul); text-decoration: none; }
 .contato a:hover { text-decoration: underline; }
@@ -496,6 +508,13 @@ function main() {
   fs.rmSync(OUT_DIR, { recursive: true, force: true });
   fs.mkdirSync(path.join(OUT_DIR, "ics"), { recursive: true });
   fs.writeFileSync(path.join(OUT_DIR, "style.css"), CSS);
+
+  if (horario.foto) {
+    fs.copyFileSync(
+      path.join(DATA_DIR, horario.foto),
+      path.join(OUT_DIR, horario.foto)
+    );
+  }
 
   const cards = [];
   const semEspecificacao = [];
@@ -576,6 +595,7 @@ function main() {
         site: horario.site,
         email: horario.email,
         lattes: horario.lattes,
+        foto: horario.foto,
       })
     );
 
