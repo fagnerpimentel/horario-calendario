@@ -12,7 +12,8 @@
   "CriterioAprovacao": "As atividades de avaliação indicadas devem compor, com os devidos pesos, uma nota final que representa o “desempenho final” do aluno (NF). Para ser considerado aprovado na disciplina, o aluno deve ter pelo menos 75% de presença e obter nota final maior ou igual a 5,0 (cinco).",
   "conteudo": [
     {"Tópico": 1, "titulo": "Introdução"},
-    {"Tópico": 2, "titulo": "Conceitos Básicos"},
+    {"Tópico": 2, "titulo": "Conceitos Básicos: Interface, Interação e Affordance"},
+    {"Tópico": 2, "titulo": "Conceitos Básicos: Qualidade em IHC"},
     {"Tópico": 3, "titulo": "Fatores Humanos em Sistemas Computacionais"},
     {"Tópico": 4, "titulo": "Abordagens Teóricas em IHC"},
     {"Tópico": 5, "titulo": "Processos de Design de IHC"},
