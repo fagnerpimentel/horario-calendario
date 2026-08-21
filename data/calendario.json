@@ -32,9 +32,6 @@
     "2026-12-10": { "titulo": "Avaliação Substitutiva", "tipo": "avaliacao" },
     "2026-12-11": { "titulo": "Avaliação Substitutiva", "tipo": "avaliacao" },
     "2026-12-14": { "titulo": "Avaliação Substitutiva", "tipo": "avaliacao" },
-    "2026-12-15": { "titulo": "Avaliação Substitutiva", "tipo": "avaliacao" },
-    "2026-12-16": { "titulo": "Dia Não letivo", "tipo": "evento" },
-    "2026-12-17": { "titulo": "Dia Não letivo", "tipo": "evento" },
-    "2026-12-18": { "titulo": "Dia Não letivo", "tipo": "evento" }
+    "2026-12-15": { "titulo": "Avaliação Substitutiva", "tipo": "avaliacao" }
   }
 }
