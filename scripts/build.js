@@ -81,6 +81,36 @@ const TIPO_CLASS = {
   evento: "tipo-evento",
 };
 
+// AI Assessment Scale (Leon Furze) — https://aiassessmentscale.com/
+const AIAS_URL = "https://aiassessmentscale.com/";
+const AIAS_LEVELS = {
+  N1: {
+    titulo: "Sem IA",
+    descricao:
+      "A avaliação reflete o conhecimento e as habilidades do aluno sem uso de IA em nenhuma etapa.",
+  },
+  N2: {
+    titulo: "IA para Planejamento",
+    descricao:
+      "A IA pode apoiar etapas iniciais (brainstorming, esboços, pesquisa preliminar); a entrega final reflete o desenvolvimento próprio dessas ideias pelo aluno.",
+  },
+  N3: {
+    titulo: "IA Colaborativa",
+    descricao:
+      "A IA pode apoiar partes da tarefa (rascunhos, feedback, refinamento), desde que o aluno avalie criticamente o resultado e molde a entrega final.",
+  },
+  N4: {
+    titulo: "IA Plena",
+    descricao:
+      "A IA pode ser usada ao longo de toda a tarefa, com ênfase em como o aluno direciona, avalia e aplica a IA para atingir os objetivos da avaliação.",
+  },
+  N5: {
+    titulo: "Exploração de IA",
+    descricao:
+      "A avaliação convida o aluno a usar IA de forma criativa para explorar novas abordagens, gerar insights ou desenvolver respostas inovadoras.",
+  },
+};
+
 function sanitizeFileName(s) {
   return String(s).replace(/[\\/:*?"<>|]/g, "-");
 }
@@ -316,6 +346,13 @@ function pageDisciplina({
   </div>`
     : "";
 
+  const notaFinalItens = notaFinal
+    ? Object.entries(notaFinal).filter(([sigla]) => sigla !== "Formula")
+    : [];
+  const aiasUsados = [
+    ...new Set(notaFinalItens.map(([, item]) => item.aias).filter(Boolean)),
+  ].sort();
+
   const avaliacaoHtml =
     notaFinal || criterioAprovacao
       ? `<div class="avaliacao">
@@ -326,14 +363,16 @@ function pageDisciplina({
         : ""
     }
     ${
-      notaFinal
+      notaFinalItens.length
         ? `<ul class="legenda-lista">
-      ${Object.entries(notaFinal)
-        .filter(([sigla]) => sigla !== "Formula")
-        .map(
-          ([sigla, desc]) =>
-            `<li><strong>${escapeHtml(sigla)}</strong>: ${escapeHtml(desc)}</li>`
-        )
+      ${notaFinalItens
+        .map(([sigla, item]) => {
+          const nivel = item.aias && AIAS_LEVELS[item.aias];
+          const aiasHtml = nivel
+            ? ` — <a href="${AIAS_URL}" target="_blank" rel="noopener" title="${escapeAttr(nivel.descricao)}">🤖 ${escapeHtml(item.aias)}: ${escapeHtml(nivel.titulo)}</a>`
+            : "";
+          return `<li><strong>${escapeHtml(sigla)}</strong>: ${escapeHtml(item.descricao)} (${escapeHtml(item.range)})${aiasHtml}</li>`;
+        })
         .join("\n      ")}
     </ul>`
         : ""
@@ -341,6 +380,21 @@ function pageDisciplina({
     ${
       criterioAprovacao
         ? `<p class="criterio">${escapeHtml(criterioAprovacao)}</p>`
+        : ""
+    }
+    ${
+      aiasUsados.length
+        ? `<div class="aias-legenda">
+      <p class="aias-legenda-titulo">Níveis de uso de IA nas avaliações (<a href="${AIAS_URL}" target="_blank" rel="noopener">AI Assessment Scale</a>):</p>
+      <ul class="legenda-lista">
+        ${aiasUsados
+          .map(
+            (n) =>
+              `<li><strong>${escapeHtml(n)} — ${escapeHtml(AIAS_LEVELS[n].titulo)}:</strong> ${escapeHtml(AIAS_LEVELS[n].descricao)}</li>`
+          )
+          .join("\n        ")}
+      </ul>
+    </div>`
         : ""
     }
   </div>`
@@ -482,6 +536,11 @@ a.badge:hover { background:#e5e7eb; }
 .legenda-lista { margin:0 0 10px; padding-left:20px; font-size:13px; color:#444; }
 .legenda-lista li { margin-bottom:3px; }
 .avaliacao .criterio { font-size:13px; color:#555; margin:0; line-height:1.5; }
+.legenda-lista a { color: var(--azul); text-decoration:none; }
+.legenda-lista a:hover { text-decoration:underline; }
+.aias-legenda { margin-top:14px; padding-top:12px; border-top:1px dashed #d1d5db; }
+.aias-legenda-titulo { font-size:13px; font-weight:600; margin:0 0 6px; }
+.aias-legenda .legenda-lista { font-size:12px; color:#555; }
 tr.tipo-feriado td { background:#fef2f2; color:#991b1b; font-style: italic; }
 tr.tipo-avaliacao td { background:#fefce8; color:#854d0e; font-style: italic; }
 tr.tipo-evento td { background:#f0fdf4; color:#166534; font-style: italic; }

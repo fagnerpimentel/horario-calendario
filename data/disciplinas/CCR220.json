@@ -4,10 +4,10 @@
   "ementa": "Filtros de Kalman, Particulas e Bayesianos; Modelos de Movimento; Mapeamento e Localização Simultâneous; Localização de Monte Carlo e Cadeias de Markov.",
   "NotaFinal": {
     "Formula": "0.4*LAB + 0.3*P1 + 0.3*P2",
-    "LAB": "Laboratório",
-    "P1": "Avaliação Parcial (0 a 10) ",
-    "P2": "Avaliação Final (0 a 10) ",
-    "P3": "Avaliação Substitutiva [P1 ou P2] (0 a 10)"
+    "LAB": { "descricao": "Laboratório", "range": "0 a 10", "aias": "N3" },
+    "P1": { "descricao": "Avaliação Parcial", "range": "0 a 10", "aias": "N1" },
+    "P2": { "descricao": "Avaliação Final", "range": "0 a 10", "aias": "N1" },
+    "P3": { "descricao": "Avaliação Substitutiva [P1 ou P2]", "range": "0 a 10", "aias": "N1" }
   },
   "CriterioAprovacao": "As atividades de avaliação indicadas devem compor, com os devidos pesos, uma nota final que representa o “desempenho final” do aluno (NF). Para ser considerado aprovado na disciplina, o aluno deve ter pelo menos 75% de presença e obter nota final maior ou igual a 5,0 (cinco).",
   "conteudo": [
