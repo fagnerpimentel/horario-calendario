@@ -12,16 +12,16 @@
   "CriterioAprovacao": "As atividades de avaliação indicadas devem compor, com os devidos pesos, uma nota final que representa o “desempenho final” do aluno (NF). Para ser considerado aprovado na disciplina, o aluno deve ter pelo menos 75% de presença e obter nota final maior ou igual a 5,0 (cinco).",
   "conteudo": [
     {"Tópico": 1, "titulo": "Introdução"},
-    {"Tópico": 2, "titulo": "Design de Robôs"},
-    {"Tópico": 3, "titulo": "Arquiteturas de IHR "},
-    {"Tópico": 4, "titulo": "Expressividade e engajamento social."},
-    {"Tópico": 5, "titulo": "Comunicação multimodal"},
-    {"Tópico": 6, "titulo": "Design de interação e antropomorfismo."},
-    {"Tópico": 7, "titulo": "Avaliação da experiência humano-robô."},
-    {"Tópico": 8, "titulo": "Robôs colaborativos (cobots)."},
-    {"Tópico": 9, "titulo": "Ética em sistemas robóticos"},
-    {"Tópico": 10, "titulo": "Confiança, aceitabilidade e dilemas éticos."},
-    {"Tópico": 11, "titulo": "Apresentação e avaliação final do projeto."}
+    {"Tópico": 2, "titulo": "Design de Robôs: Conceitos e Princípios"},
+    {"Tópico": 3, "titulo": "Design de Robôs: Métodos e Ferramentas"},
+    {"Tópico": 4, "titulo": "Arquiteturas de IHR "},
+    {"Tópico": 5, "titulo": "Expressividade e engajamento social."},
+    {"Tópico": 6, "titulo": "Comunicação multimodal"},
+    {"Tópico": 7, "titulo": "Design de interação e antropomorfismo."},
+    {"Tópico": 8, "titulo": "Avaliação da experiência humano-robô."},
+    {"Tópico": 9, "titulo": "Robôs colaborativos (cobots)."},
+    {"Tópico": 10, "titulo": "Ética em sistemas robóticos"},
+    {"Tópico": 11, "titulo": "Confiança, aceitabilidade e dilemas éticos."}
   ]
 }
  
