@@ -20,7 +20,6 @@
     {"Tópico": 4, "titulo": "LAB: Filtro de Kalman"},
     {"Tópico": 5, "titulo": "Filtro de Kalman estendido"},
     {"Tópico": 5, "titulo": "LAB: Filtro de Kalman estendido"},
-    {"Tópico": "R", "titulo": "Revisão"},
     {"Tópico": 6, "titulo": "Mapeamento"},
     {"Tópico": 6, "titulo": "LAB: Mapeamento"},
     {"Tópico": 7, "titulo": "Localização de Monte Carlo"},
@@ -33,6 +32,7 @@
     {"Tópico": 10, "titulo": "LAB: Graph SLAM"},
     {"Tópico": 11, "titulo": "Visual SLAM"},
     {"Tópico": 11, "titulo": "LAB: Visual SLAM"}, 
+    {"Tópico": "R", "titulo": "Revisão"},
     {"Tópico": "R", "titulo": "Revisão"}
   ]
 }
