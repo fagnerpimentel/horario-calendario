@@ -22,7 +22,7 @@
           "turma": "301",
           "horarios": [
             { "dia": "Segunda", "inicio": "19:10", "fim": "20:50", "local": "K308" },
-            { "dia": "Quarta", "inicio": "21:00", "fim": "22:40", "local": "K308" }
+            { "dia": "Quarta", "inicio": "21:00", "fim": "22:40", "local": "K217" }
           ]
         }
       ]
