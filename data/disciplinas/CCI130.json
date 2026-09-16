@@ -16,6 +16,7 @@
     {"Tópico": 2, "titulo": "Conceitos Básicos: Qualidade em IHC"},
     {"Tópico": 3, "titulo": "Fatores Humanos em Sistemas Computacionais"},
     {"Tópico": 4, "titulo": "Abordagens Teóricas em IHC"},
+    {"Tópico": "R", "titulo": "Revisão"},
     {"Tópico": 5, "titulo": "Processos de Design de IHC"},
     {"Tópico": 6, "titulo": "Identificação de Necessidades dos Usuários e Definição dos Requisitos de IHC"},
     {"Tópico": 7, "titulo": "Organização do Espaço de Problema"},
