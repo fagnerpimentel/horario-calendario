@@ -17,11 +17,11 @@
     {"Tópico": 3, "titulo": "LAB - Locomoção"},
     {"Tópico": 4, "titulo": "Cinemática"},
     {"Tópico": 5, "titulo": "LAB - Cinemática"},
-    {"Tópico": 6, "titulo": "Planejamento"},
-    {"Tópico": 7, "titulo": "LAB - Wavefront "},
-    {"Tópico": 8, "titulo": "LAB - AEstrela"},
-    {"Tópico": 9, "titulo": "LAB - RRT"},
-    {"Tópico": 10, "titulo": "LAB - Campos Potenciais"},
-    {"Tópico": 11, "titulo": "Revisão"}
+    {"Tópico": 6, "titulo": "Mapeamento"},
+    {"Tópico": 7, "titulo": "Planejamento"},
+    {"Tópico": 8, "titulo": "LAB - Wavefront "},
+    {"Tópico": 9, "titulo": "LAB - AEstrela"},
+    {"Tópico": 10, "titulo": "LAB - RRT"},
+    {"Tópico": 11, "titulo": "LAB - Campos Potenciais"}
   ]
 }
